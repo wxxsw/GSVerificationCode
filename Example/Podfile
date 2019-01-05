@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GSVerificationCode_Example' do
+  pod 'GSVerificationCode', :path => '../'
+
+  target 'GSVerificationCode_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

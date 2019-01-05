@@ -1,0 +1,16 @@
+PODS:
+  - GSVerificationCode (0.1.0)
+
+DEPENDENCIES:
+  - GSVerificationCode (from `../`)
+
+EXTERNAL SOURCES:
+  GSVerificationCode:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GSVerificationCode: 290bbaf15f494f95ba9b32938a4be29c6a512ed5
+
+PODFILE CHECKSUM: f7828d01d54fcaaf021e5aca14dadb0974eb8d2c
+
+COCOAPODS: 1.6.0.beta.2

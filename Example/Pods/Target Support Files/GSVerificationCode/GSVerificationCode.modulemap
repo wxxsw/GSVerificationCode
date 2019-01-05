@@ -1,0 +1,6 @@
+framework module GSVerificationCode {
+  umbrella header "GSVerificationCode-umbrella.h"
+
+  export *
+  module * { export * }
+}
