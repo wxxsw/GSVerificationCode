@@ -7,18 +7,24 @@
 //
 
 import UIKit
+import GSVerificationCode
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var verificationCodeView: GSVerificationCodeView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        verificationCodeView.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+}
 
+extension ViewController: GSVerificationCodeViewDelegate {
+    
+    func verificationCode(_ view: GSVerificationCodeView, didFinished code: String) {
+        print(code)
+    }
+    
 }
 

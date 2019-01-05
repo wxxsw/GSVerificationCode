@@ -50,6 +50,9 @@
                             <constraint firstItem="Dha-Pm-o8d" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="ZV8-tr-K2J"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="verificationCodeView" destination="Dha-Pm-o8d" id="dDe-Yc-FQV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

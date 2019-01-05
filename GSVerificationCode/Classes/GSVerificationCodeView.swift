@@ -8,7 +8,15 @@
 
 import UIKit
 
+public protocol GSVerificationCodeViewDelegate: NSObjectProtocol {
+    
+    func verificationCode(_ view: GSVerificationCodeView, didFinished code: String)
+    
+}
+
 public class GSVerificationCodeView: UIView {
+    
+    public weak var delegate: GSVerificationCodeViewDelegate?
     
     @IBInspectable public var fontSize: CGFloat {
         get { return font.pointSize }
@@ -55,20 +63,36 @@ public class GSVerificationCodeView: UIView {
         textField.frame = bounds
         coverView.frame = bounds
     }
+    
+    @discardableResult
+    public override func becomeFirstResponder() -> Bool {
+        return textField.becomeFirstResponder()
+    }
 
 }
 
 extension GSVerificationCodeView: UITextFieldDelegate {
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let oldString = textField.text, let range = Range(range, in: oldString) else {
-            return false
-        }
+        guard
+            let oldString = textField.text,
+            let range = Range(range, in: oldString)
+            else { return false }
+        
         let newString = oldString.replacingCharacters(in: range, with: string)
+        let shouldChange = newString.count <= maxLength
+        
         if newString.count >= maxLength {
-            DispatchQueue.main.async { [weak textField] in textField?.resignFirstResponder() }
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                self.textField.resignFirstResponder()
+                if shouldChange {
+                    self.delegate?.verificationCode(self, didFinished: newString)
+                }
+            }
         }
-        return newString.count <= maxLength
+        
+        return shouldChange
     }
     
 }
