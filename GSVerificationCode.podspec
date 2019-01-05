@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     
     s.license      = { :type => 'MIT', :file => 'LICENSE' }
     s.author       = { 'Gesen' => 'i@gesen.me' }
-    s.source       = { :git => 'https://github.com/wxxsw/GSVerificationCode.git', :tag => '#{s.version}' }
+    s.source       = { :git => 'https://github.com/wxxsw/GSVerificationCode.git', :tag => "#{s.version}" }
     
     s.source_files = 'GSVerificationCode/Classes/**/*'
     
