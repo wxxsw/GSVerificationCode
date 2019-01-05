@@ -10,7 +10,7 @@ import UIKit
 
 public protocol GSVerificationCodeViewDelegate: NSObjectProtocol {
     
-    func verificationCode(_ view: GSVerificationCodeView, didFinished code: String)
+    func verificationCode(_ view: GSVerificationCodeView, didChange code: String)
     
 }
 
@@ -86,10 +86,11 @@ extension GSVerificationCodeView: UITextFieldDelegate {
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
                 self.textField.resignFirstResponder()
-                if shouldChange {
-                    self.delegate?.verificationCode(self, didFinished: newString)
-                }
             }
+        }
+        
+        if shouldChange {
+            self.delegate?.verificationCode(self, didChange: newString)
         }
         
         return shouldChange

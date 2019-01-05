@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 
 extension ViewController: GSVerificationCodeViewDelegate {
     
-    func verificationCode(_ view: GSVerificationCodeView, didFinished code: String) {
+    func verificationCode(_ view: GSVerificationCodeView, didChange code: String) {
         print(code)
     }
     
