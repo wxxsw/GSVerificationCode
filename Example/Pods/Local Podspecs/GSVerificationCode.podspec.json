@@ -1,7 +1,7 @@
 {
   "name": "GSVerificationCode",
   "version": "0.1.0",
-  "summary": "验证码输入框",
+  "summary": "A simple style verification code view, in Swift.",
   "homepage": "https://github.com/wxxsw/GSVerificationCode",
   "license": {
     "type": "MIT",

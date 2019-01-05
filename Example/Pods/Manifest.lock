@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GSVerificationCode: 290bbaf15f494f95ba9b32938a4be29c6a512ed5
+  GSVerificationCode: bd3ab8bb730461985ad56833a25a12d2c6e56e1b
 
 PODFILE CHECKSUM: f7828d01d54fcaaf021e5aca14dadb0974eb8d2c
 

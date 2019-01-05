@@ -8,12 +8,26 @@
 
 import UIKit
 
-class GSVerificationCodeView: UIView {
+public class GSVerificationCodeView: UIView {
     
-    @IBInspectable var font: UIFont = .systemFont(ofSize: 16)
-    @IBInspectable var maxLength: Int = 4
-    @IBInspectable var spacing: CGFloat = 10
-    @IBInspectable var textColor: UIColor = .black
+    @IBInspectable public var fontSize: CGFloat {
+        get { return font.pointSize }
+        set { font = .systemFont(ofSize: newValue); updateIB() }
+    }
+    
+    @IBInspectable public var maxLength: Int = 4 {
+        didSet { updateIB() }
+    }
+    
+    @IBInspectable public var spacing: CGFloat = 10 {
+        didSet { updateIB() }
+    }
+    
+    @IBInspectable public var textColor: UIColor = .black {
+        didSet { updateIB() }
+    }
+    
+    public var font: UIFont = .systemFont(ofSize: 16)
     
     private let textField = UITextField()
     private let coverView = UIView()
@@ -27,16 +41,16 @@ class GSVerificationCodeView: UIView {
         super.init(coder: aDecoder)
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         configureInit()
     }
     
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return false
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         textField.frame = bounds
         coverView.frame = bounds
@@ -46,7 +60,7 @@ class GSVerificationCodeView: UIView {
 
 extension GSVerificationCodeView: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let oldString = textField.text, let range = Range(range, in: oldString) else {
             return false
         }
@@ -72,11 +86,6 @@ private extension GSVerificationCodeView {
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.delegate = self
-        textField.defaultTextAttributes = [
-            NSAttributedString.Key.font: font,
-            .kern: spacing,
-            .foregroundColor: textColor
-        ]
         textField.keyboardType = .numberPad
         addSubview(textField)
     }
@@ -92,6 +101,14 @@ private extension GSVerificationCodeView {
     
     @objc func tap() {
         textField.becomeFirstResponder()
+    }
+    
+    func updateIB() {
+        textField.defaultTextAttributes = [
+            .font: font,
+            .kern: spacing,
+            .foregroundColor: textColor
+        ]
     }
     
 }
